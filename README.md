@@ -40,8 +40,19 @@ Once the game is running, you can choose from the following options:
 
 ### `pickRandom`
 Description: Picks a random element from a list of integers.
+
 Signature: `pickRandom :: [Int] -> IO Int`
-Example:
+
+**Example:**
 ```haskell
 -- Pick a random element from the list
-pickRandom [1, 2, 3, 4] >>= print
+let xs = [1, 2, 3, 4, 5]
+pickRandom xs -- Returns: 3
+```
+### `convertInputToIndex`
+Description: Converts user input to the corresponding board index.
+Signature: `convertInputToIndex :: String -> Maybe Int`
+Example:
+```haskell
+-- Convert user input to board index
+convertInputToIndex "B2" -- Returns: Just 4
