@@ -71,3 +71,73 @@ Example:
 let board = [1, 2, 0, 0, 1, 2, 2, 0, 1]
 printBoard board--Returns:"|X| |O| | | | | |X| |O| |O| | | |X|"
 ```
+### `checkMoveLegal`
+
+- Description: Checks if a move is legal on the Tic-Tac-Toe board.
+- Signature: `checkMoveLegal :: Board -> Move -> Maybe Board`
+
+Example:
+```haskell
+-- Check if a move is legal
+let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+let move = (True, 4)
+checkMoveLegal board move -- Returns: Just [0, 0, 0, 0, 1, 0, 0, 0, 0]
+```
+### `boolToIntList`
+
+- Description: Converts a Boolean value to a list of integers.
+- Signature: `boolToIntList :: Bool -> [Int]`
+
+Example:
+```haskell
+-- Convert a Boolean value to a list of integers
+boolToIntList True -- Returns: [1]
+boolToIntList False -- Returns: [2]
+```
+### `winningCombinations`
+
+- Description: Represents the winning combinations in a Tic-Tac-Toe game.
+- Signature: `winningCombinations :: [[Int]]`
+
+Example:
+```haskell
+-- Get the winning combinations
+winningCombinations -- Returns: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [6, 4, 2]]
+```
+### `getOutcome`
+
+Description: Determines the outcome of a Tic-Tac-Toe game based on the current state of the board.
+
+Signature: `getOutcome :: Board -> Maybe Outcome`
+
+Example:
+```haskell
+-- Get the outcome of the game
+let board = [1, 2, 1, 2, 1, 2, 0, 0, 0]
+getOutcome board -- Returns: Just (Win True)
+
+let board = [1, 1, 2, 2, 2, 1, 1, 2, 1]
+getOutcome board -- Returns: Just (Win False)
+
+let board = [1, 2, 1, 2, 1, 2, 2, 1, 2]
+getOutcome board -- Returns: Just Draw
+
+let board = [1, 2, 0, 0, 0, 0, 0, 0, 0]
+getOutcome board -- Returns: Nothing
+```
+### `getLegalMoves`
+
+- Description: Retrieves the legal moves from a Tic-Tac-Toe board.
+- Signature: `getLegalMoves :: Board -> [Int] -> Int -> [Int]`
+Example:
+```haskell
+-- Get the legal moves from the board
+let board = [1, 0, 2, 0, 1, 0, 0, 2, 0]
+getLegalMoves board [] 0 -- Returns: [1, 3, 5, 6, 7, 8]
+
+let board = [1, 1, 2, 2, 2, 1, 1, 2, 1]
+getLegalMoves board [] 0 -- Returns: []
+
+let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+getLegalMoves board [] 0 -- Returns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+```
