@@ -43,7 +43,7 @@ Description: Picks a random element from a list of integers.
 
 Signature: `pickRandom :: [Int] -> IO Int`
 
-**Example:**
+Example:
 ```haskell
 -- Pick a random element from the list
 let xs = [1, 2, 3, 4, 5]
@@ -51,8 +51,23 @@ pickRandom xs -- Returns: 3
 ```
 ### `convertInputToIndex`
 Description: Converts user input to the corresponding board index.
+
 Signature: `convertInputToIndex :: String -> Maybe Int`
+
 Example:
 ```haskell
 -- Convert user input to board index
 convertInputToIndex "B2" -- Returns: Just 4
+```
+### `printBoard`
+
+Description: Prints the Tic-Tac-Toe board to the console.
+
+Signature: `printBoard :: Board -> IO ()`
+
+Example:
+```haskell
+-- Print the Tic-Tac-Toe board
+let board = [1, 2, 0, 0, 1, 2, 2, 0, 1]
+printBoard board--Returns:"|X| |O| | | | | |X| |O| |O| | | |X|"
+```
