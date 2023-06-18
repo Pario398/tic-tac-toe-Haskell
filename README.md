@@ -39,9 +39,8 @@ Once the game is running, you can choose from the following options:
 ## Functions
 
 ### `pickRandom`
-Description: Picks a random element from a list of integers.
-
-Signature: `pickRandom :: [Int] -> IO Int`
+- Description: Picks a random element from a list of integers.
+- Signature: `pickRandom :: [Int] -> IO Int`
 
 Example:
 ```haskell
@@ -50,9 +49,8 @@ let xs = [1, 2, 3, 4, 5]
 pickRandom xs -- Returns: 3
 ```
 ### `convertInputToIndex`
-Description: Converts user input to the corresponding board index.
-
-Signature: `convertInputToIndex :: String -> Maybe Int`
+- Description: Converts user input to the corresponding board index.
+- Signature: `convertInputToIndex :: String -> Maybe Int`
 
 Example:
 ```haskell
@@ -60,10 +58,8 @@ Example:
 convertInputToIndex "B2" -- Returns: Just 4
 ```
 ### `printBoard`
-
-Description: Prints the Tic-Tac-Toe board to the console.
-
-Signature: `printBoard :: Board -> IO ()`
+- Description: Prints the Tic-Tac-Toe board to the console.
+- Signature: `printBoard :: Board -> IO ()`
 
 Example:
 ```haskell
@@ -106,9 +102,8 @@ winningCombinations -- Returns: [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1,
 ```
 ### `getOutcome`
 
-Description: Determines the outcome of a Tic-Tac-Toe game based on the current state of the board.
-
-Signature: `getOutcome :: Board -> Maybe Outcome`
+- Description: Determines the outcome of a Tic-Tac-Toe game based on the current state of the board.
+- Signature: `getOutcome :: Board -> Maybe Outcome`
 
 Example:
 ```haskell
@@ -129,6 +124,7 @@ getOutcome board -- Returns: Nothing
 
 - Description: Retrieves the legal moves from a Tic-Tac-Toe board.
 - Signature: `getLegalMoves :: Board -> [Int] -> Int -> [Int]`
+
 Example:
 ```haskell
 -- Get the legal moves from the board
@@ -140,4 +136,83 @@ getLegalMoves board [] 0 -- Returns: []
 
 let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 getLegalMoves board [] 0 -- Returns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+```
+### `humanPlayer`
+
+- Description: Allows a human player to make a move in the Tic-Tac-Toe game.
+- Signature: `humanPlayer :: Player -> IO ()`
+
+Example:
+```haskell
+-- Initialize the player and let a human player make a move
+let player = (True, inputChan, outputChan)
+humanPlayer player
+```
+### `botPlayer`
+
+- Description: Allows a bot player to make a move in the Tic-Tac-Toe game.
+- Signature: `botPlayer :: Player -> IO ()`
+
+Example:
+```haskell
+-- Initialize the player and let a bot player make a move
+let player = (False, inputChan, outputChan)
+botPlayer player
+```
+### `indextoInput`
+
+- Description: Converts an index value to the corresponding Tic-Tac-Toe board position.
+- Signature: `indextoInput :: Int -> Maybe String`
+
+Example:
+```haskell
+-- Convert an index to the corresponding board position
+indextoInput 0 -- Returns: Just "A1"
+indextoInput 4 -- Returns: Just "B2"
+indextoInput 8 -- Returns: Just "C3"
+indextoInput 9 -- Returns: Nothing
+```
+### `gameManager`
+
+- Description: Manages the game flow and player turns in the Tic-Tac-Toe game.
+- Signature: `gameManager :: Board -> Bool -> Player -> Bool -> Player -> Bool -> IO ()`
+
+
+Example:
+```haskell
+-- Initialize the players and start the game
+let board = startBoard
+let playerA = (True, inputChanA, outputChanA)
+let playerB = (False, inputChanB, outputChanB)
+gameManager board True playerA True playerB False
+```
+### `gameStart`
+
+- Description: Starts the Tic-Tac-Toe game with the specified player configurations.
+- Signature: `gameStart :: Bool -> Bool -> IO ()`
+
+Example:
+
+```haskell
+-- Start the game with a human player (Player A) against a bot player (Player B)
+gameStart True False
+-- Start the game with a bot player (Player A) against a human player (Player B)
+gameStart False True
+-- Start the game with two bot players
+gameStart True True
+-- Start the game with two human players
+gameStart False False
+```
+
+### `createPlayer`
+
+- Description: Creates a player for the Tic-Tac-Toe game with the specified symbol and player type.
+- Signature: `createPlayer :: String -> Bool -> IO (Chan Msg, Chan Msg, Player)`
+
+Example:
+```haskell
+-- Create a human player with symbol "X"
+let isBot = False
+let symbol = "X"
+createPlayer symbol isBot
 ```
